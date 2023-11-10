@@ -1,0 +1,7 @@
+http.get./search:
+  fn: search_match
+  body:
+    type: object
+  responses:
+    200:
+      application/json:

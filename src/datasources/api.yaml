@@ -1,0 +1,2 @@
+type: axios
+base_url: https://api.cricapi.com/v1/currentMatches?apikey=87b9ad62-d436-461e-97d5-32fd9789d744&offset=0

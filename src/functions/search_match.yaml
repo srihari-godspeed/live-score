@@ -1,0 +1,19 @@
+id: search_match_score
+on_error:
+  continue: false
+  log_attributes:
+    error_message: <% outputs.transform_error.message %>
+    error_type: 'Data not found'
+  response:
+    success: false
+    code: 404
+    data: 'fetch error'
+tasks:
+  - id: search
+    fn: datasource.mongo.findOne
+    args:
+      name: <%inputs.body.name%>
+  - id: second_task
+    fn: com.gs.return
+    args:
+      data: <%outputs.search.data%>

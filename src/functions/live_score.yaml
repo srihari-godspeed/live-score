@@ -1,0 +1,19 @@
+id: live_score
+on_error:
+  continue: false
+  log_attributes:
+    error_message: <% outputs.transform_error.message %>
+    error_type: 'cron error'
+  response:
+    success: false
+    code: 500
+    data: 'cron error'
+tasks:
+  - id: first_task
+    fn: datasource.api.get./
+
+  - id: print
+    description: print for every minute
+    fn: com.gs.return
+    args:
+      data: <%outputs.first_task.data%>

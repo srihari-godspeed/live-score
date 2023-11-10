@@ -1,0 +1,7 @@
+http.get./fetch:
+  fn: fetch_all_matches
+  body:
+    type: object
+  responses:
+    200:
+      application/json:

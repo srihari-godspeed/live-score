@@ -1,0 +1,22 @@
+{
+  "mongodb": {
+    "mode": "single",
+    "dbName": "godspeed",
+    "ports": [
+      27017
+    ]
+  },
+  "postgresql": false,
+  "kafka": false,
+  "elasticsearch": false,
+  "redis": false,
+  "servicePort": 3000,
+  "gsNodeServiceVersion": "latest",
+  "projectName": "live-score-app",
+  "meta": {
+    "createTimestamp": "2023-11-10T05:06:05.068Z",
+    "lastUpdateTimestamp": "2023-11-10T05:06:05.068Z",
+    "cliVersionWhileCreation": "2.8.0",
+    "cliVersionWhileLastUpdate": "2.8.0"
+  }
+}

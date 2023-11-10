@@ -1,0 +1,55 @@
+version: "3.7"
+services:
+  node:
+    command: bash -c "sleep infinity"
+    build:
+      context: .
+      args:
+        USER_UID: 1000
+    environment:
+      - SHELL=/bin/bash
+      - INSIDE_CONTAINER=true
+      - MONGO_URL=mongodb://admin:godspeed@mongodb1,mongodb2,mongodb3:/godspeed
+      - PORT=3000
+    volumes:
+      - ..:/workspace/development/app:cached
+      - ./scripts:/scripts
+    working_dir: /workspace/development/app
+    ports:
+      - 3000:3000
+    depends_on:
+      - mongodb1
+  mongodb1:
+    image: mongo:5.0
+    volumes:
+      - mongodb1-data:/data/db
+      - ./scripts:/scripts
+    ports:
+      - 27017:27017
+    depends_on:
+      - mongodb2
+      - mongodb3
+    restart: always
+    command: 'bash -c "/scripts/mongodb_init.sh"'
+  mongodb2:
+    image: mongo:5.0
+    volumes:
+      - mongodb2-data:/data/db
+      - ./scripts:/scripts
+    ports:
+      - :27017
+    restart: always
+    command: 'bash -c "/scripts/mongodb_init.sh"'
+  mongodb3:
+    image: mongo:5.0
+    volumes:
+      - mongodb3-data:/data/db
+      - ./scripts:/scripts
+    ports:
+      - :27017
+    restart: always
+    command: 'bash -c "/scripts/mongodb_init.sh"'
+volumes:
+  mongodb1-data:
+  mongodb2-data:
+  mongodb3-data:
